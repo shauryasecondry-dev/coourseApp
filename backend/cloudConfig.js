@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+import { CloudinaryStorage } from "@zeeshanalipanhwar/multer-storage-cloudinary";
 
 // Only load dotenv locally
 if (process.env.NODE_ENV !== "production") {
