@@ -17,23 +17,22 @@ import Profile from './Profile.jsx'
 import Purchase from "./Purchase.jsx"
 import Read from "./Read.jsx";
 function App() {
-
   return (
     <Routes>
+      <Route element={<UserHome />} path="/" /> {/* ✅ UserHome as landing page */}
       <Route element={<Login />} path="/login" />
       <Route element={<Signup />} path="/signup" />
       <Route element={<Logout />} path="/logout" />
       <Route element={<AddCourseData />} path="/addcoursedata" />
-      <Route element={<AdminHome/>} path="/admin/home"></Route>
-      <Route element={<UserHome/>} path="/user/home"></Route>
-      <Route element={<OwnCourses/>} path="/admin/owncourse"></Route>
+      <Route element={<AdminHome/>} path="/admin/home" />
+      <Route element={<UserHome/>} path="/user/home" />
+      <Route element={<OwnCourses/>} path="/admin/owncourse" />
       <Route element={<Edit />} path="/admin/edit/:id" />
-          <Route element={<AllCourses />} path="/allcourses" />
-      <Route element={<Profile/>} path="/admin/profile"></Route>
-      <Route element={<Purchase/>} path="/user/purchase"></Route>
-            <Route element={<Read/>} path="/user/purchase/read"></Route>
+      <Route element={<AllCourses />} path="/allcourses" />
+      <Route element={<Profile/>} path="/admin/profile" />
+      <Route element={<Purchase/>} path="/user/purchase" />
+      <Route element={<Read/>} path="/user/purchase/read" />
       <Route path="*" element={<NotFound />} />
-      
     </Routes>
   )
 }
