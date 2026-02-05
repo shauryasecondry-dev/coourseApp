@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "@zeeshanalipanhwar/multer-storage-cloudinary";
 
 // Only load dotenv locally
 if (process.env.NODE_ENV !== "production") {
@@ -13,10 +12,4 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-export const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: "course",
-    allowed_formats: ["jpg", "png", "jpeg"],
-  },
-});
+export { cloudinary };
