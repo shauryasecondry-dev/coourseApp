@@ -12,7 +12,6 @@ import {cloudinary} from './cloudConfig.js'
 import User from "./models/User.js"
 import Course from "./models/Course.js"
 import Purchase from "./models/Purchase.js";
-
 const upload = multer({ 
   storage: multer.memoryStorage()
 });
@@ -100,7 +99,12 @@ else{
             const token=jwt.sign({
                 id:user._id
             },process.env.SECRET)
-            res.cookie("jwt",token)
+            res.cookie("jwt", token, {
+  httpOnly: true,
+  secure: true,    // HTTPS required
+  sameSite: "none" // cross-origin cookies
+})
+
             return res.status(200).json({message:"login success",username:user.username,email:user.email})
 
         }
