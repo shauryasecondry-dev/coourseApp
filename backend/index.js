@@ -39,20 +39,13 @@ if (process.env.NODE_ENV !== "production") {
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// ✅ CORS - place this BEFORE defining routes
- 
 
-// Then your regular cors middleware
-app.use(cors({
-    origin: [
-      'https://coourse-app-fg2x.vercel.app',
-      'http://localhost:5173'
-    ],
-    credentials: true
-}));
 // ✅ Update CORS for production
 app.use(cors({
-    origin: true,  // Allow all origins for now
+    origin: [
+        "https://coourse-app-fg2x.vercel.app",
+        "http://localhost:5173"
+    ],
     credentials: true
 }))
 
@@ -87,6 +80,7 @@ catch(error){
   return  res.status(500).json({message:error.message})
 }
 })
+
 app.post("/login",async(req,res)=>{
     try
 {let {error}=loginSchema.validate(req.body);
@@ -107,8 +101,13 @@ else{
         else{
             const token=jwt.sign({
                 id:user._id
-            },process.env.SECRET)//token created for login
-            res.cookie("jwt",token)
+            },process.env.SECRET)
+            res.cookie("jwt", token, {
+  httpOnly: true,
+  secure: true,    // HTTPS required
+  sameSite: "none" // cross-origin cookies
+})
+
             return res.status(200).json({message:"login success",username:user.username,email:user.email})
 
         }
