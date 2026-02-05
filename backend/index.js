@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
+ 
 import bcryptjs from 'bcryptjs'
 import jwt from "jsonwebtoken"
 import cookieParser from 'cookie-parser'
@@ -14,7 +14,11 @@ import Course from "./models/Course.js"
 import Purchase from "./models/Purchase.js";
 const upload=multer({storage})
 let app=express();
- dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  const dotenv = await import("dotenv");
+  dotenv.config();
+}
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
