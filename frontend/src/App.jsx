@@ -16,10 +16,12 @@ import AllCourses from "./AllCourses.jsx"
 import Profile from './Profile.jsx'
 import Purchase from "./Purchase.jsx"
 import Read from "./Read.jsx";
+import {Navigate} from 'react-router-dom' 
 function App() {
   return (
     <Routes>
-      <Route element={<UserHome />} path="/" /> {/* ✅ UserHome as landing page */}
+    <Route path="/" element={<Navigate to="/user/home" />} />
+
       <Route element={<Login />} path="/login" />
       <Route element={<Signup />} path="/signup" />
       <Route element={<Logout />} path="/logout" />
