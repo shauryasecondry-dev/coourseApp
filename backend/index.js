@@ -43,9 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ✅ Update CORS for production
 app.use(cors({
-    origin: process.env.NODE_ENV === "production" 
-        ? process.env.FRONTEND_URL
-        :"coourse-app-fg2x-b0fcs1kbs-shauryas-projects-2528bfba.vercel.app",
+    origin: process.env.FRONTEND_URL,
     credentials: true
 }))
 
