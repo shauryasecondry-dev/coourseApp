@@ -39,7 +39,17 @@ if (process.env.NODE_ENV !== "production") {
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// ✅ CORS - place this BEFORE defining routes
+ 
 
+// Then your regular cors middleware
+app.use(cors({
+    origin: [
+      'https://coourse-app-fg2x.vercel.app',
+      'http://localhost:5173'
+    ],
+    credentials: true
+}));
 // ✅ Update CORS for production
 app.use(cors({
     origin: true,  // Allow all origins for now
